@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<#include "ServerP/Base/baseGameHeader.html">
+<title>Person Info</title>
+</head>
+
+<#include "ServerP/Menus/BaseAdminMenus.html">
+        <div class="main-panel">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute bg-primary fixed-top">
+                <div class="container-fluid">
+                    <div class="navbar-wrapper">
+                        <div class="navbar-toggle">
+                            <button type="button" class="navbar-toggler">
+                                <span class="navbar-toggler-bar bar1"></span>
+                                <span class="navbar-toggler-bar bar2"></span>
+                                <span class="navbar-toggler-bar bar3"></span>
+                            </button>
+                        </div>
+                        <a class="navbar-brand" href="#pablo">个人信息</a>
+                    </div>
+<#include "ServerP/Menus/BaseIndexHeader.html">
+                </div>
+            </nav>
+            <!-- End Navbar -->
+            <div class="panel-header panel-header-sm">
+            </div>
+            <div class="content">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="title">个人信息</h5>
+                            </div>
+                            <div class="card-body">
+                                <form id="Login_Manager_Info">
+                                    <div class="row">
+                                        <div class="col-md-5 pr-1">
+                                            <div class="form-group">
+                                                <label>Company (disabled)</label>
+                                                <input type="text" class="form-control" disabled placeholder="Company" value="Creative Code Inc.">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 px-1">
+                                            <div class="form-group">
+                                                <label>昵称</label>
+                                                <input type="text" class="form-control" name="Manager_nick" placeholder="Username" value="${LoginAdmin.admin_nick_name}" >
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 pl-1">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">邮箱地址</label>
+                                                <input type="email" class="form-control" placeholder="Email" value="${LoginAdmin.admin_email}" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 pr-1">
+                                            <div class="form-group">
+                                                <label>真实姓名</label>
+                                                <input type="text" class="form-control" placeholder="Company" value="${LoginAdmin.admin_name}" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>家庭住址</label>
+                                                <input type="text" class="form-control" name="Manager_address" placeholder="Home Address" value="${LoginAdmin.admin_address }">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4 pr-1">
+                                            <div class="form-group">
+                                                <label>联系电话</label>
+                                                <input type="text" class="form-control" name="telphone" placeholder="Telphone" value="${LoginAdmin.admin_telphone }">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 px-1">
+                                            <div class="form-group">
+                                                <label>Country</label>
+                                                <select class="form-control">
+                                                   <option value="C">China</option>
+                                                   <option value="E">English</option>
+                                                   <option value="A">American</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 pl-1">
+                                            <div class="form-group">
+                                                <label>性别</label>
+                                                <input type="text" class="form-control" placeholder="Sex" value="${LoginAdmin.admin_gender }">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>关于我</label>
+                                                <textarea rows="4" cols="80" class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card card-user">
+                            <div class="image">
+                                <img src="Game/ftl/ServerP/img/bg5.jpg" alt="...">
+                            </div>
+                            <div class="card-body">
+                                <div class="author">
+                                    <a href="#">
+                                        <img class="avatar border-gray" src="Game/ftl/ServerP/img/mike.jpg" alt="...">
+                                        <h5 class="title">${LoginAdmin.admin_name}</h5>
+                                    </a>
+                                    <p class="description">
+                                        michael24
+                                    </p>
+                                </div>
+                                <p class="description text-center">
+                                    "Lamborghini Mercy
+                                    <br> Your chick she so thirsty
+                                    <br> I'm in that two seat Lambo"
+                                </p>
+                            </div>
+                            <hr>
+                            <div class="button-container">
+                                <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+                                    <i class="fab fa-facebook-f"></i>
+                                </button>
+                                <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+                                    <i class="fab fa-twitter"></i>
+                                </button>
+                                <button href="#" class="btn btn-neutral btn-icon btn-round btn-lg">
+                                    <i class="fab fa-google-plus-g"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<#include "ServerP/Menus/BaseIndexFooter.html">
+        </div>
+    </div>
+<#include "ServerP/Base/baseGameFooter.html">
+<#include "ServerP/Base/endBody.html">
+<#include "ServerP/Base/endHtml.html">

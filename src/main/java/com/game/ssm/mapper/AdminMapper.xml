@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.game.ssm.dao.AdminOpDAO">
+      <sql id="newGameType">games_name,games_describe,games_images,games_upload_admin_id,games_configure_id</sql>
+      <sql id="newSmallGameType">games_category_id,gamesType_name,gamesType_images,gamesType_describe</sql>
+      <sql id="articleInfo">gamesType_id,game_travel_article_name,game_travel_article_info,game_travel_article_author,upload_admin_id,upload_time</sql>
+      <sql id="gameDuty">admin_authority,duty_publish_grade,duty_publish_time,duty_publish_info,duty_publish_state</sql>
+      
+      <resultMap type="com.game.ssm.entiy.Admin" id="LoginAdminInfo">
+        <result property="admin_id" column="admin_id"/>
+        <result property="admin_name" column="admin_name"/>
+        <result property="admin_nick_name" column="admin_nick_name"/>
+        <result property="admin_email" column="admin_email"/>
+        <result property="admin_password" column="admin_password"/>
+        <result property="admin_gender" column="admin_gender"/>
+        <result property="admin_address" column="admin_address"/>
+        <result property="admin_telphone" column="admin_telphone"/>
+        <result property="admin_authority" column="admin_authority"/>
+        <result property="admin_status" column="admin_status"/>
+        <collection property="authority" ofType="com.game.ssm.entiy.Admin_Authority" >
+              <result property="au_id" column="au_id"/>
+              <result property="au_name" column="au_name"/>
+              <result property="au_i_id" column="au_i_id"/>
+              <result property="au_href" column="au_href"/>
+              <result property="au_i_class" column="au_i_class"/>
+        </collection>
+      </resultMap>
+      
+      <select id="LoginAdmin" resultMap="LoginAdminInfo" >
+      select administrator.admin_id as admin_id ,admin_name,admin_nick_name,admin_email,admin_password,admin_gender,admin_address,admin_telphone,admin_authority,admin_status,admin_authority.au_id,au_name,au_i_id,au_href,au_i_class 
+      from administrator left join admin_authority on administrator.admin_id=admin_authority.admin_id join authority on authority.au_id=admin_authority.au_id 
+      where administrator.admin_email=#{admin_email} and administrator.admin_password=#{admin_password} and au_status=true
+      </select>
+      <!-- 更新管理员的信息 -->
+      <select id="ManagerInfoUpdate">
+             
+      </select>
+
+      
+      <!-- 获取所有admin信息并分页 -->
+      <select id="queryAdminAllInfoListPage" resultMap="LoginAdminInfo">
+         select administrator.admin_id as admin_id ,admin_name,admin_nick_name,admin_email,admin_password,admin_gender,admin_address,admin_telphone,admin_authority,admin_status,admin_authority.au_id,au_name,au_href,au_i_class 
+       from administrator left join admin_authority on administrator.admin_id=admin_authority.admin_id join authority on authority.au_id=admin_authority.au_id 
+       <where>
+          au_status=true 
+       </where>
+      </select>
+
+      
+      <resultMap  type="com.game.ssm.entiy.Member" id="MemberAllInfo">
+        <result property="member_id" column="admin_id"/>
+        <result property="gamesCategoryadmin_id" column="gamesCategoryadmin_id"/>
+        <result property="member_name" column="member_name"/>
+        <result property="member_nick_name" column="member_nick_name"/>
+        <result property="member_gender" column="member_gender"/>
+        <result property="member_register_telphone" column="member_register_telphone"/>
+        <result property="member_register_email" column="member_register_email"/>
+        <result property="gamesCategorycreate_time" column="gamesCategorycreate_time"/>
+        <result property="member_authority" column="member_authority"/>
+        <result property="member_status" column="member_status"/>
+        <collection property="memberMenus" ofType="com.game.ssm.entiy.Member_Authority">
+         <result property="Mau_id" column="Mau_id"/>
+         <result property="Mau_name" column="Mau_name"/>
+         <result property="Mau_authority" column="Mau_authority"/>      
+        </collection>
+      
+      </resultMap>
+      
+      <!-- 获取所有用户信息并分页 -->
+      <select id="queryMemberAllInfoListPage" resultMap="MemberAllInfo">
+      select Member.gamesCategoryadmin_id,Member.member_id as admin_id,member_name,member_nick_name,member_gender,member_register_telphone,member_register_email,gamesCategorycreate_time,member_authority,member_status ,Member_Authority.Mau_id,MAuthority_Menus.Mau_name,Member_Authority.Mau_authority
+                   from Member_Authority 
+                                        left join MAuthority_Menus on Member_Authority.Mau_id=MAuthority_Menus.Mau_id 
+                                        left join Member on Member_Authority.member_id=Member.member_id 
+            <where>
+                   <if test="gamesCategoryadmin_id != null">
+                         gamesCategoryadmin_id=#{gamesCategoryadmin_id}
+                   </if>
+            </where>
+      </select>
+      
+      
+      <!-- 注册用户的月注册量统计图 -->
+      <select id="queryUserRegisterMonthAnalysis" resultType="UserRegisterMonthJson">
+      select    sum(case month(gamesCategorycreate_time) when '1' then 1 else 0 end) as January,
+                sum(case month(gamesCategorycreate_time) when '2' then 1 else 0 end) as February,
+	            sum(case month(gamesCategorycreate_time) when '3' then 1 else 0 end) as March,
+                sum(case month(gamesCategorycreate_time) when '4' then 1 else 0 end) as April,
+                sum(case month(gamesCategorycreate_time) when '5' then 1 else 0 end) as May,
+                sum(case month(gamesCategorycreate_time) when '6' then 1 else 0 end) as June,
+                sum(case month(gamesCategorycreate_time) when '7' then 1 else 0 end) as July,
+                sum(case month(gamesCategorycreate_time) when '8' then 1 else 0 end) as August,
+                sum(case month(gamesCategorycreate_time) when '9' then 1 else 0 end) as September,
+                sum(case month(gamesCategorycreate_time) when '10' then 1 else 0 end) as October,
+                sum(case month(gamesCategorycreate_time) when '11' then 1 else 0 end) as November,
+                sum(case month(gamesCategorycreate_time) when '12' then 1 else 0 end) as December
+                        from member
+             <where>
+                    <if test="gamesCategorycreate_time!=null">
+                           year(gamesCategorycreate_time)=#{gamesCategorycreate_time}
+                    </if>
+             </where>
+      </select>
+      
+      
+      <!-- 管理员上传文章月统计 -->
+      <select id="queryUserGameArticleMonth" resultType="UserGameArticleMonth">
+       select    sum(case month(upload_time) when '1' then 1 else 0 end) as januaryUpload,
+                sum(case month(upload_time) when '2' then 1 else 0 end) as februaryUpload,
+	            sum(case month(upload_time) when '3' then 1 else 0 end) as marchUpload,
+                sum(case month(upload_time) when '4' then 1 else 0 end) as aprilUpload,
+                sum(case month(upload_time) when '5' then 1 else 0 end) as mayUpload,
+                sum(case month(upload_time) when '6' then 1 else 0 end) as juneUpload,
+                sum(case month(upload_time) when '7' then 1 else 0 end) as julyUpload,
+                sum(case month(upload_time) when '8' then 1 else 0 end) as augustUpload,
+                sum(case month(upload_time) when '9' then 1 else 0 end) as septemberUpload,
+                sum(case month(upload_time) when '10' then 1 else 0 end) as octoberUpload,
+                sum(case month(upload_time) when '11' then 1 else 0 end) as novemberUpload,
+                sum(case month(upload_time) when '12' then 1 else 0 end) as decemberUpload
+                        from game_travel_article
+              <where>
+                  <if test="upload_time!=null">
+                       year(upload_time)=#{upload_time}
+                  </if>
+              </where>
+      </select>
+      
+      
+      <!-- 新增游戏种类 -->
+      <insert id="addBigGameType" parameterType="BigGameType" useGeneratedKeys="true"  flushCache="true">
+           insert into Games(<include refid="newGameType"></include>) values(#{games_name},#{games_describe},#{games_images},#{games_upload_admin_id},#{games_configure_id})
+      </insert>
+      
+      <!-- 搜索游戏配置信息 -->
+      <select id="getConfigureInfo" resultType="GameConfigure">
+           select * from gameConfigure
+      </select>
+      
+      <!-- 搜索所有游戏大类的信息 -->
+      <select id="getBigGameInfo" resultType="BigGameType">
+        select * from games 
+      </select>
+      
+      <!-- 查询游戏大类的id -->
+      <select id="queryBigTypeIDByName" resultType="int">
+         select games_id from games where games_name=#{name}
+      </select>
+      
+      
+      <!-- 添加游戏小类信息 -->
+      <insert id="addSmallGameType" parameterType="BigGameType" useGeneratedKeys="true"  flushCache="true">
+           insert into gamesType(<include refid="newSmallGameType"></include>) values(#{games_category_id},#{gamesType_name},#{gamesType_images},#{gamesType_describe})
+      </insert>
+      
+      <!-- 获取游戏小类的名称信息 -->
+      <select id="queryGameSmallInfo" resultType="string">
+        select gamesType_name from gamesType
+        <where>
+             <if test="games_category_id!=null">
+                games_category_id=#{games_category_id}
+             </if>
+        </where>
+      </select>
+      
+      <!-- 上传游讯文章信息 -->
+      <insert id="uploadGameArticleInfo" parameterType="uploadArticleInfo" useGeneratedKeys="true"  flushCache="true">
+         insert into game_travel_article(<include refid="articleInfo"></include>) values(#{gamesType_id},#{game_travel_article_name},#{game_travel_article_info},#{game_travel_article_author},#{upload_admin_id},#{upload_time})
+      </insert>
+      
+      <!-- 根据游戏小类的名称获取游戏id -->
+      <select id="querySmallGameIdByName" resultType="int">
+          select gamesType_id from gamesType where gamesType_name=#{name}
+      </select>
+      
+      <!-- 添加游讯发布 -->
+      <insert id="addAdminPublishDuty" parameterType="GameDuty" useGeneratedKeys="true"  flushCache="true">
+        insert into admin_duty(<include refid="gameDuty"></include>)  values(#{admin_authority},#{duty_publish_grade},#{duty_publish_time},#{duty_publish_info},#{duty_publish_state});
+      </insert>
+      
+      
+      <!-- 获取任务信息,并分页 -->
+      <select id="getDutyInfoAllByTimeListPage" resultType="Admin_duty">
+           select  admin_duty_id as admin_id,admin_authority,duty_publish_grade,duty_publish_time,duty_publish_info from admin_duty where duty_publish_state=false  order by duty_publish_time desc 
+      </select>
+      
+      <!-- 获取管理员信息并分页adminInfoPlugin -->
+      <select id="queryAdminInfoListPage" resultType="AdminInfoPlugin">
+       select administrator.admin_id as admin_id ,admin_name,admin_nick_name,admin_email,admin_password,admin_gender,admin_address,admin_telphone,admin_authority,admin_status
+		,group_concat(admin_authority.au_id) au_id,group_concat(au_name) au_name 
+       from administrator left join admin_authority on administrator.admin_id=admin_authority.admin_id join authority on authority.au_id=admin_authority.au_id  group by admin_name
+      </select>
+      
+      <!-- 获取用户信息并分页userInfoPlugin -->
+      <select id="queryUserInfoListPage" resultType="UserInfoPlugin">
+           select Member.gamesCategoryadmin_id,Member.member_id as admin_id,member_name,member_nick_name,member_gender,member_register_telphone,member_register_email,gamesCategorycreate_time,member_authority,member_status ,group_concat(MAuthority_Menus.Mau_id) Mau_id,group_concat(Mau_name) Mau_name
+                   from Member_Authority 
+                                        left join MAuthority_Menus on Member_Authority.Mau_id=MAuthority_Menus.Mau_id 
+                                        left join Member on Member_Authority.member_id=Member.member_id 
+               <where>
+                   <if test="gamesCategoryadmin_id != null">
+                         gamesCategoryadmin_id=#{gamesCategoryadmin_id}
+                   </if>
+            </where>        
+                      group by Member.member_id                
+      </select>
+</mapper>

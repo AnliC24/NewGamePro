@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<#include "ServerP/Base/baseGameHeader.html">
+<title>Game Source Upload</title>
+</head>
+<#include "ServerP/Menus/BaseAdminMenus.html">
+        <div class="main-panel">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute bg-primary fixed-top">
+                <div class="container-fluid">
+                    <div class="navbar-wrapper">
+                        <div class="navbar-toggle">
+                            <button type="button" class="navbar-toggler">
+                                <span class="navbar-toggler-bar bar1"></span>
+                                <span class="navbar-toggler-bar bar2"></span>
+                                <span class="navbar-toggler-bar bar3"></span>
+                            </button>
+                        </div>
+                        <a class="navbar-brand" href="#pablo">Game Source</a>
+                    </div>
+<#include "ServerP/Menus/BaseIndexHeader.html">
+                </div>
+            </nav>
+            <!-- End Navbar -->
+            <div class="panel-header">
+                <div class="header text-center">
+                    <h2 class="title">游戏资讯管理</h2>
+                    <p class="category">Game Source Upload Project
+                        <a target="_blank" href="https://github.com/mouse0270">Source Project</a>. Please checkout the
+                        <a href="http://bootstrap-notify.remabledesigns.com/" target="_blank">full documentation.</a>
+                    </p>
+                </div>
+            </div>
+            <div class="content">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">游戏资源</h4>
+                            </div>
+                            <div class="card-body" >
+                                <div class="alert alert-danger">
+                                    <span>游戏大类资源上传</span>
+                                    <form  id="BigGmaePictureUpload" enctype="multipart/form-data" >
+                                        <b>游戏名称      - -    </b>   <input type="text" class="btn btn-primary btn-block" id="gameName" name="gameName"/>  <br/>
+                                        <b>游戏配置      - -    </b>   <select name="configureSelect" class="btn btn-primary btn-block">
+                                                                  <#if Configure?exists >
+                                                                  <#list Configure as configure>
+                                                                      <option name=${configure.games_configure_id}>${configure.games_configure_id}</option>
+                                                                  </#list>
+                                                                  </#if>
+                                                                 </select>  
+                                        <b>游戏图片  - -     </b>   <input type="file" class="btn btn-primary btn-block" id="file" name="file"/>
+                                        <b>游戏简介  - -     </b>   <textarea  class="btn btn-primary btn-block" id="bigGameInfo" name="bigGameInfo"></textarea>    
+                                    </form>
+                                    
+                                </div>
+                                
+                                <div class="row">
+                                        <div class="col-md-4">
+                                             <button class="btn btn-primary btn-block" onclick="demo.showNotification('BigGmaePictureUpload','top','center')">上传</button>
+                                        </div>
+                                        <div class="col-md-4">
+                                                    <button class="btn btn-primary btn-block" onclick="demo.showNotification('BigGmaePictureUpload','top','left')">重置</button>
+                                        </div>
+                                        <div class="col-md-4">
+                                                    <button class="btn btn-primary btn-block" onclick="demo.showNotification('BigGmaePictureUpload','top','right')">搜索</button>
+                                        </div>
+                                </div>
+                                
+                                <div class="alert alert-danger">
+                                    <span>游戏小类资源上传</span>
+                                    <form  id="SmallGmaePictureUpload" enctype="multipart/form-data" >
+                                        <b>游戏大类      - -    </b>       
+                                        <select name="BigTypeName" class="btn btn-primary btn-block">
+                                          <!-- 获取数据库内所有游戏大类的信息名称 -->
+                                          <#if BigGameInfo?exists >
+                                          <#list BigGameInfo as bigInfo>
+                                           <option name="${bigInfo.games_name}">${bigInfo.games_name}</option>
+                                           </#list>
+                                           </#if>
+                                        </select>  <br/>
+                                        <b>游戏名称      - -    </b>       <input type="text" class="btn btn-primary btn-block" id="smallName" name="smallName"/>  <br/>
+                                        <b>游戏图片  - -     </b>   <input type="file" class="btn btn-primary btn-block" id="Smallfile" name="Smallfile"/>
+                                        <b>游戏简介  - -     </b>   <textarea  class="btn btn-primary btn-block" id="smallGameInfo" name="smallGameInfo"></textarea>    
+                                    </form>
+                                    
+                                </div>
+                                <div class="row">
+                                        <div class="col-md-4">
+                                             <button class="btn btn-primary btn-block" onclick="demo.showNotification('SmallGmaePictureUpload','top','center')">上传</button>
+                                        </div>
+                                        <div class="col-md-4">
+                                                    <button class="btn btn-primary btn-block" onclick="demo.showNotification('SmallGmaePictureUpload','top','left')">重置</button>
+                                        </div>
+                                        <div class="col-md-4">
+                                                    <button class="btn btn-primary btn-block" onclick="demo.showNotification('SmallGmaePictureUpload','top','right')">搜索</button>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">文章上传</h4>
+                            </div>
+                            <div class="card-body">
+                                
+                                <div class="alert alert-danger">
+                                    <span>
+                                        <b> Info - Game Article Upload</b> 
+                                        <form  id="articleUpload" enctype="multipart/form-data">
+                                          <b>游戏种类      - -    </b>       <select id="ArticleBigType" name="ArticleBigType" class="btn btn-primary btn-block" onchange="querySmallType()">
+                                                                          <!-- 获取数据库内所有游戏大类的信息名称 -->
+                                                                           <#if BigGameInfo?exists >
+                                                                               <#list BigGameInfo as bigInfo>
+                                                                               <option name="${bigInfo.games_name}">${bigInfo.games_name}</option>
+                                                                               </#list>
+                                                                           </#if>
+                                                                      </select>
+                                           <b>游戏名称     - -    </b>       <select id="SmallType" name="SmallType" class="btn btn-primary btn-block">
+                                                                          <div id="123" name="123">
+                                                                          <!-- 获取数据库内所有游戏大类的信息名称 -->
+                                                                           
+                                                                           </div>
+                                                                      </select>
+                                           <b>文章标题      - -    </b>       <input type="text" class="btn btn-primary btn-block" id="gameTitle" name="gameTitle"/>  <br/>
+                                           <b>作者      - -    </b>       <input type="text" class="btn btn-primary btn-block" id="gameAuthor" name="gameAuthor"/>  <br/>
+                                           <b>发表时间     - -    </b><img onclick="WdatePicker({el:$dp.$('d12')})" src="/GamePro/Game/ftl/My97DatePicker/skin/datePicker.gif" _fcksavedurl="/GamePro/Game/ftl/My97DatePicker/skin/datePicker.gif" width="16" height="22" align="absmiddle">       <input id="d12" type="text" name="Uptime" class="btn btn-primary btn-block"/>   <br/>
+                                           <b>文章内容              - -    </b>       <textarea class="btn btn-primary btn-block" id="upArticleInfo" name="upArticleInfo"></textarea>
+                                        </form>
+                                    </span>
+                                    
+                                </div>   
+                                
+                                <div class="row">
+                                        <div class="col-md-4">
+                                             <button class="btn btn-primary btn-block" onclick="demo.showNotification('articleUpload','top','center')">上传</button>
+                                        </div>
+                                        <div class="col-md-4">
+                                                    <button class="btn btn-primary btn-block" onclick="demo.showNotification('articleUpload','top','left')">重置</button>
+                                        </div>
+                                        <div class="col-md-4">
+                                                    <button class="btn btn-primary btn-block" onclick="demo.showNotification('articleUpload','top','right')">搜索</button>
+                                        </div>
+                                </div>                                                         
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<#include "ServerP/Menus/BaseIndexFooter.html">
+        </div>
+    </div>
+<#include "ServerP/Base/endBody.html">
+<#include "ServerP/Base/baseGameFooter.html">
+<#include "ServerP/Base/endHtml.html">

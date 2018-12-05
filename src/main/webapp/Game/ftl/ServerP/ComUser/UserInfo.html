@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<#include "ServerP/Base/baseGameHeader.html">
+<title>Admin Info</title>
+<script>
+//首页
+function indexPage() {
+	window.location.href="UserindexPage";
+}
+//尾页
+function endPage(){
+	window.location.href="UserendPage";
+}
+//前一页
+function preViewPage(){
+	window.location.href="UserpreViewPage";
+}
+//下一页
+function nextPage(){
+	window.location.href="UsernextPage";
+}
+</script>
+</head>
+<#include "ServerP/Menus/BaseAdminMenus.html">
+<div class="main-panel">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute bg-primary fixed-top">
+                <div class="container-fluid">
+                    <div class="navbar-wrapper">
+                        <div class="navbar-toggle">
+                            <button type="button" class="navbar-toggler">
+                                <span class="navbar-toggler-bar bar1"></span>
+                                <span class="navbar-toggler-bar bar2"></span>
+                                <span class="navbar-toggler-bar bar3"></span>
+                            </button>
+                        </div>
+                        <a class="navbar-brand" href="#pablo">用户信息</a>
+                    </div>
+<#include "ServerP/Menus/BaseIndexHeader.html">
+                </div>
+            </nav>
+            <!-- End Navbar -->
+            <div class="panel-header panel-header-sm">
+            </div>
+            <div class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">ComUser Info</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead class=" text-primary">
+                                            <th>
+                                                                                                                                       姓名                                                                                      
+                                            </th>
+                                            <th>
+                                                                                                                                        昵称                                                                                                                                                                        
+                                            </th>
+                                            <th>
+                                                                                                                                         权限
+                                            </th>
+                                            <th >
+                                                                                                                                          联系电话
+                                            </th>
+                                            <th class="text-right">
+                                                                                                                                          详情
+                                            </th>
+                                        </thead>
+                                        <tbody>
+                                        <#if ComUserAllInfo?exists >
+                                          <#list ComUserAllInfo as comUserInfo>
+                                            
+                                              <tr>
+                                                <td>
+                                                   ${comUserInfo.member_name}
+                                                </td>
+                                                <td>
+                                                    ${comUserInfo.member_nick_name}
+                                                </td>
+                                                <td>
+                                                   ${comUserInfo.member_authority}
+                                                </td>
+                                                <td>
+                                                   ${comUserInfo.member_register_telphone}
+                                                </td>
+                                                <td class="text-right">
+                                                   <div class="shop-info"> 
+                                                     <a data-toggle="collapse"  aria-expanded="false"  href="#${comUserInfo.member_nick_name}"  aria-controls="${comUserInfo.member_nick_name}"><i class="now-ui-icons users_single-02"></i></a>
+                                                   </div>
+                                                     <div class="collapse" id="${comUserInfo.member_nick_name}">
+                                                       <div class="content">
+                                                      
+                                                         <div class="card-body">
+                                                               <form id="Login_Manager_Info">
+                                                                   <div class="row">
+                                                                         <div class="col-md-4 pr-1">
+                                                                            <div class="form-group">
+                                                                                <label>用户状态</label>
+                                                                                  <input type="text" class="form-control" name="status" placeholder="status" value="${(comUserInfo.member_status)! 无状态 }" disabled>
+                                                                            </div>
+                                                                         </div>
+                                                                  <div class="col-md-4 pl-1">
+                                                                       <div class="form-group">
+                                                                          <label for="exampleInputEmail1">邮箱地址</label>
+                                                                          <input type="email" class="form-control" placeholder="Email" value="${(comUserInfo.member_register_email)! 未填写}" disabled>
+                                                                       </div>
+                                                                  </div>
+                                                                  <div class="col-md-4 pl-1">
+                                                                       <div class="form-group">
+                                                                          <label>性别</label>
+                                                                          <input type="text" class="form-control" placeholder="Sex" value="${(comUserInfo.member_gender)! 未填写 }" disabled>
+                                                                       </div>
+                                                                  </div>
+                                                                     </div>                            
+                                                                 </form>
+                                                            </div>
+                                                       </div>
+                                                     </div>
+                                                       </td>
+                                                     </tr>
+                                                  </#list>
+                                               </#if>
+                                           </tbody>
+                                        </table>
+                                    </div>
+ <!-- 分页导航栏 -->
+    <div  class="row">
+                     共<i class=" text-primary">${ComUserAllInfoTotalResult}</i>条记录，当前显示第&nbsp;<i class=" text-primary">${UserAllCurPage}</i>页 ,共分<i class=" text-primary">${ComUserAllInfoTotalPage}</i>页
+        <div class="text-right">
+          <ul>
+          <div class="row">    
+                <div style="margin-left: 950px;"><li><a href="javascript:indexPage()">首页</a></li>&nbsp;&nbsp;</div>
+                <div style="margin-left: 20px;"><li><a href="javascript:indexPage()">前一页</a></li>&nbsp;&nbsp;</div>
+                <div style="margin-left: 20px;"><li><a>${UserAllCurPage}</a></li>&nbsp;&nbsp;</div>
+                <div style="margin-left: 20px;"><li><a href="javascript:indexPage()">后一页</a></li>&nbsp;&nbsp;</div>
+                <div style="margin-left: 20px;"><li><a href="javascript:eailPage()">尾页</a></li></div>          
+          </div>
+        </ul>
+        </div>  
+    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<#include "ServerP/Menus/BaseIndexFooter.html">
+        </div>
+    </div>
+<#include "ServerP/Base/baseGameFooter.html">
+<#include "ServerP/Base/endBody.html">
+<#include "ServerP/Base/endHtml.html">

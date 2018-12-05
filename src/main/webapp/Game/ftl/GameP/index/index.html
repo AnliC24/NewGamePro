@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<#include "GameP/BaseGame/baseHeader.html">
+<!-- Header -->
+	<div class="header">
+		<#include "GameP/BaseGame/bodyNav.html" >
+		<#include "GameP/BaseGame/gameCenterImgChange.html" >
+	</div>
+	<!-- Banner-Slider-JavaScript -->
+	<script src="/GamePro/Game/ftl/GameP/js/responsiveslides.min.js"></script>
+	<script>
+		$(function() {
+			$("#slider").responsiveSlides({
+				auto : true,
+				nav : true,
+				speed : 800,
+				namespace : "callbacks",
+				pager : true,
+			});
+		});
+	</script>
+<!-- //Banner-Slider-JavaScript -->
+	<!-- //Header -->
+
+	<!-- trend -->
+	<div class="trend-w3layouts">
+		<div class="container">
+			<h2>游戏 分类</h2>
+			
+			
+			<!--这边的游戏分类到时候在数据库里导出游戏分类，用jstl的for标签。  -->
+			<ul id="flexiselDemo1">
+				<li>
+					<div class="trend-grid">
+						<h4>竞速类 游戏</h4>
+						<a href="games.jsp"><img src="Game/ftl/GameP/images/tg1.jpg" alt=" " class="img-responsive" /></a>
+					</div>
+				</li>
+				<li>
+					<div class="trend-grid">
+						<h4>3D 游戏</h4>
+						<a href="games.jsp"><img src="Game/ftl/GameP/images/tg2.jpg" alt=" " class="img-responsive" /></a>
+					</div>
+				</li>
+				<li>
+					<div class="trend-grid">
+						<h4>动作 游戏</h4>
+						<a href="games.jsp"><img src="Game/ftl/GameP/images/tg3.jpg" alt=" " class="img-responsive" /></a>
+					</div>
+				</li>
+				<li>
+					<div class="trend-grid">
+						<h4>益智 游戏</h4>
+						<a href="games.jsp"><img src="Game/ftl/GameP/images/tg4.jpg" alt=" " class="img-responsive" /></a>
+					</div>
+				</li>
+			</ul>
+			<script type="text/javascript">
+				$(window).load(function() {
+					$("#flexiselDemo1").flexisel({
+						visibleItems : 4,
+						animationSpeed : 1000,
+						autoPlay : true,
+						autoPlaySpeed : 2000,
+						pauseOnHover : true,
+						enableResponsiveBreakpoints : true,
+						responsiveBreakpoints : {
+							portrait : {
+								changePoint : 480,
+								visibleItems : 2
+							},
+							landscape : {
+								changePoint : 640,
+								visibleItems : 3
+							},
+							tablet : {
+								changePoint : 768,
+								visibleItems : 4
+							}
+						}
+					});
+
+				});
+			</script>
+			<script type="text/javascript" src="/GamePro/Game/ftl/GameP/js/jquery.flexisel.js"></script>
+		</div>
+	</div>
+	<!-- //trend -->
+
+
+	<!-- services-->
+	<div class="services-agileits-w3layouts">
+		<div class="container">
+			<h3>热门  资讯</h3>
+			<div class="indexInfo" style="margin: 0 auto; width:600px;text-align: center;font-size: 20px">
+				<%--class改为info,这个标签就会变为热门标签 --%>
+				<a class="info" href="single.jsp">《战地5》X1X对比RTX2080Ti：最强主机依然不虚</a><br/>
+				<a href="single.jsp">《战地5》X1X对比RTX2080Ti：最强主机依然不虚</a><br/>
+				<a href="single.jsp">《战地5》X1X对比RTX2080Ti：最强主机依然不虚</a><br/>
+				<a href="single.jsp">《战地5》X1X对比RTX2080Ti：最强主机依然不虚</a><br/>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<!-- //services-->
+
+	<!-- new games -->
+	<div class="new-w3-agile">
+		<div class="container">
+			<h3>热门 游戏</h3>
+			<div class="col-md-3 new-grid-w3l view view-eighth">
+				<img src="Game/ftl/GameP/images/ng1.jpg" alt=" " />
+				<div class="mask">
+					<a href="single.jsp"><h4>点  我</h4></a>
+					<p>更多关于我的</p>
+				</div>
+			</div>
+			<div class="col-md-3 new-grid-w3l view view-eighth">
+				<img src="Game/ftl/GameP/images/ng2.jpg" alt=" " />
+				<div class="mask">
+					<a href="single.jsp"><h4>点  我</h4></a>
+					<p>更多关于我的</p>
+				</div>
+			</div>
+			<div class="col-md-3 new-grid-w3l view view-eighth">
+				<img src="Game/ftl/GameP/images/ng3.jpg" alt=" " />
+				<div class="mask">
+					<a href="single.jsp"><h4>点  我</h4></a>
+					<p>更多关于我的</p>
+				</div>
+			</div>
+			<div class="col-md-3 new-grid-w3l view view-eighth">
+				<img src="Game/ftl/GameP/images/ng4.jpg" alt=" " />
+				<div class="mask">
+					<a href="single.jsp"><h4>点  我</h4></a>
+					<p>更多关于我的</p>
+				</div>
+			</div>
+			<div class="col-md-3 new-grid-agile view view-eighth">
+				<img src="Game/ftl/GameP/images/ng5.jpg" alt=" " />
+				<div class="mask">
+					<a href="single.jsp"><h4>点  我</h4></a>
+					<p>更多关于我的</p>
+				</div>
+			</div>
+			<div class="col-md-3 new-grid-agile view view-eighth">
+				<img src="Game/ftl/GameP/images/ng6.jpg" alt=" " />
+				<div class="mask">
+					<a href="single.jsp"><h4>点  我</h4></a>
+					<p>更多关于我的</p>
+				</div>
+			</div>
+			<div class="col-md-3 new-grid-agile view view-eighth">
+				<img src="Game/ftl/GameP/images/ng7.jpg" alt=" " />
+				<div class="mask">
+					<a href="single.jsp"><h4>点  我</h4></a>
+					<p>更多关于我的</p>
+				</div>
+			</div>
+			<div class="col-md-3 new-grid-agile view view-eighth">
+				<img src="Game/ftl/GameP/images/ng8.jpg" alt=" " />
+				<div class="mask">
+					<a href="single.jsp"><h4>点  我</h4></a>
+					<p>更多关于我的</p>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<!-- //new games-->
+	<div class="services-bottom-w3-agileits">
+		<div class="container">
+			<div class="wthree_info">
+				<section class="slider">
+					<div class="flexslider">
+						<ul class="slides">
+							<li>
+								<div class="wthree_info_grid">
+									<h3>我们与Alibaba达成合作</h3>
+									<p>我们使用的是阿里云</p>
+									<a href="https://www.aliyun.com/" class="learn">更多</a>
+								</div>
+							</li>
+							<li>
+								<div class="wthree_info_grid">
+									<h3>我们与Tencent达成合作</h3>
+									<p>我们使用的是腾讯云</p>
+									<a href="https://cloud.tencent.com/" class="learn">更多</a>
+								</div>
+							</li>
+							<li>
+								<div class="wthree_info_grid">
+									<h3>我们与Huawei达成合作</h3>
+									<p>我们使用的是华为云</p>
+									<a href="https://www.huaweicloud.com/" class="learn">更多</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<!-- flexSlider -->
+
+				<script defer src="/GamePro/Game/ftl/GameP/js/jquery.flexslider.js"></script>
+				<script type="text/javascript">
+					$(window).load(function() {
+						$('.flexslider').flexslider({
+							animation : "slide",
+							start : function(slider) {
+								$('body').removeClass('loading');
+							}
+						});
+					});
+				</script>
+				<!-- //flexSlider -->
+			</div>
+		</div>
+	</div>
+<#include "GameP/BaseGame/baseFooter.html">
+<#include "GameP/BaseGame/end.html">

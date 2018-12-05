@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<div class="slider">
+	<ul class="rslides" id="slider">
+		<li><img src="Game/ftl/GameP/images/banner10.jpg" class="img-responsive" alt="" /></li>
+		<li><img src="Game/ftl/GameP/images/banner11.jpg" class="img-responsive" alt="" /></li>
+		<li><img src="Game/ftl/GameP/images/banner12.jpg" class="img-responsive" alt="" /></li>
+	</ul>
+</div>
+<!-- Banner-Slider-JavaScript -->
+<script src="/GamePro/Game/ftl/GameP/js/responsiveslides.min.js"></script>
+<script>
+	$(function() {
+		$("#slider").responsiveSlides({
+			auto : true,
+			nav : true,
+			speed : 1000,
+			namespace : "callbacks",
+			pager : true,
+		});
+	});
+</script>

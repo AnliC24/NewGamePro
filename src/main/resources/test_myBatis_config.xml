@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- mybatis持久化层改写 -->
+<configuration> 
+   
+    <!-- 引入外部.properties文件 -->
+   <properties resource="db.properties"/>
+    
+   <settings>
+     <setting name="logImpl" value="LOG4J"/>
+     <!-- 开启二级缓存 -->
+     <setting name="cacheEnabled" value="true"></setting>
+     <setting name="lazyLoadingEnabled" value="true"/>
+   </settings>
+   <!-- 定义POJO别名 -->
+   <typeAliases>
+        <typeAlias alias="AdminInfo" type="com.game.ssm.entiy.Admin" />
+        <typeAlias alias="UserRegisterMonthJson" type="com.game.ssm.entiy.UserRegisterMonthJson" />
+        <typeAlias alias="UserGameArticleMonth" type="com.game.ssm.entiy.UserGameArticleMonth" />
+        <typeAlias alias="BigGameType" type="com.game.ssm.entiy.BigGameType" />
+        <typeAlias alias="GameConfigure" type="com.game.ssm.entiy.GameConfigure" />  
+         <typeAlias alias="SmallGameType" type="com.game.ssm.entiy.SmallGameType" />
+         <typeAlias alias="uploadArticleInfo" type="com.game.ssm.entiy.uploadArticleInfo" />  
+         <typeAlias alias="GameDuty" type="com.game.ssm.entiy.GameDuty" /> 
+         <typeAlias alias="Admin_duty" type="com.game.ssm.entiy.Admin_duty" /> 
+   </typeAliases>  
+    <!-- 第三方插件设置 -->
+    <plugins>
+          <!-- 分页插件 -->
+          <plugin interceptor="com.game.ssm.utils.PagePlugin">
+             <property name="dialect" value="mysql"/>
+             <property name="pageSqlId" value=".*List*.*"/>
+          </plugin>
+    </plugins>   
+    
+    <!-- 配置环境 -->
+   <environments default="development">
+       <environment id="development">
+       <transactionManager type="JDBC"/>
+            <dataSource type="POOLED"> 
+            <property name="driver" value="${jdbc.driver}"/> <!-- 使用外部属性文件定义的变量 -->
+            <property name="url" value="${jdbc.url}" />
+            <property name="username" value="${jdbc.username}"/>
+            <property name="password" value="${jdbc.password}"/>  <!-- 使用property定义的变量 -->
+            </dataSource>     
+       </environment>
+   </environments>
+   <!-- 映射 -->
+   <mappers>
+        <mapper resource="AdminMapper.xml"/>
+    </mappers>
+    
+</configuration>

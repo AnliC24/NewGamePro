@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<#include "ServerP/Base/baseGameHeader.html">
+<title>User Comment</title>
+<script src="/GamePro/Game/ftl/ServerP/js/analysis.js"></script>
+</head>
+<#include "ServerP/Menus/BaseAdminMenus.html">
+        <div class="main-panel">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute bg-primary fixed-top">
+                <div class="container-fluid">
+                    <div class="navbar-wrapper">
+                        <div class="navbar-toggle">
+                            <button type="button" class="navbar-toggler">
+                                <span class="navbar-toggler-bar bar1"></span>
+                                <span class="navbar-toggler-bar bar2"></span>
+                                <span class="navbar-toggler-bar bar3"></span>
+                            </button>
+                        </div>
+                        <a class="navbar-brand" href="#pablo">游讯 评论</a>
+                    </div>
+<#include "ServerP/Menus/BaseIndexHeader.html">
+                </div>
+            </nav>
+            <!-- End Navbar -->
+            <div class="panel-header panel-header-lg">
+                <canvas id="bigDashboardChart"></canvas>
+            </div>
+            <div class="content">
+                <div class="row">
+                
+                    <div class="col-lg-4">
+                        <div class="card card-chart">
+                            <div class="card-header">
+                                <h5 class="card-category">游讯文章上传数量月统计</h5>
+                                <h4 class="card-title" style="font-size: 15px;">Games Article Month Analysis</h4>
+                                <div class="dropdown">
+                                    <button type="button" class="btn btn-round btn-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown">
+                                        <i class="now-ui-icons loader_gear"></i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                        <a class="dropdown-item text-danger" href="#">Remove Data</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-area">
+                                    <canvas id="lineChartExample"></canvas>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="now-ui-icons loader_refresh spin"></i> Just Updated
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card card-chart">
+                            <div class="card-header">
+                                <h5 class="card-category">用户注册数量月统计</h5>
+                                <h4 class="card-title" style="font-size: 15px;">User Register of Day</h4>
+                                <div class="dropdown">
+                                    <button type="button" class="btn btn-round btn-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown">
+                                        <i class="now-ui-icons loader_gear"></i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a class="dropdown-item" href="#">Action</a>
+                                        <a class="dropdown-item" href="#">Another action</a>
+                                        <a class="dropdown-item" href="#">Something else here</a>
+                                        <a class="dropdown-item text-danger" href="#">Remove Data</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-area">
+                                    <canvas id="myChart" ></canvas>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="now-ui-icons loader_refresh spin"></i> Just Updated
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card card-chart">
+                            <div class="card-header">
+                                <h5 class="card-category">用户热评论月统计</h5>
+                                <h4 class="card-title" style="font-size: 15px;">Hot Article of User Comment Month Analysis</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="chart-area">
+                                    <canvas id="barChartSimpleGradientsNumbers"></canvas>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="now-ui-icons loader_refresh spin"></i> Last 7 days
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="card card-tasks">
+                      <div class="card-header">
+                        <h5 class="card-category">用户评论</h5>
+                        <h4 class="card-title">最新发表</h4>
+                      </div>
+                      <div class="card-body">
+                        <div class="table-full-width table-responsive">
+                          <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox" checked="">
+                                                <span class="form-check-sign"></span>
+                                            </label>
+                                        </div>
+                                    </td>
+
+                                    <td class="text-left">Sign contract for "What are conference organizers afraid of?"</td>
+                                    <td class="td-actions text-right">
+                                        <button type="button" rel="tooltip" title="" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Edit Task">
+                                            <i class="now-ui-icons ui-2_settings-90"></i>
+                                        </button>
+                                        <button type="button" rel="tooltip" title="" class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Remove">
+                                            <i class="now-ui-icons ui-1_simple-remove"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox">
+                                                <span class="form-check-sign"></span>
+                                            </label>
+                                        </div>
+                                    </td>
+
+                                    <td class="text-left">Lines From Great Russian Literature? Or E-mails From My Boss?</td>
+                                    <td class="td-actions text-right">
+                                        <button type="button" rel="tooltip" title="" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Edit Task">
+                                            <i class="now-ui-icons ui-2_settings-90"></i>
+                                        </button>
+                                        <button type="button" rel="tooltip" title="" class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Remove">
+                                            <i class="now-ui-icons ui-1_simple-remove"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="checkbox" checked="">
+                                                <span class="form-check-sign"></span>
+                                            </label>
+                                        </div>
+                                    </td>
+
+                                    <td class="text-left">Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
+                                    </td>
+                                    <td class="td-actions text-right">
+                                        <button type="button" rel="tooltip" title="" class="btn btn-info btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Edit Task">
+                                            <i class="now-ui-icons ui-2_settings-90"></i>
+                                        </button>
+                                        <button type="button" rel="tooltip" title="" class="btn btn-danger btn-round btn-icon btn-icon-mini btn-neutral" data-original-title="Remove">
+                                            <i class="now-ui-icons ui-1_simple-remove"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      <div class="card-footer">
+                        <hr>
+                        <div class="stats">
+                          <i class="now-ui-icons loader_refresh spin"></i> Updated 3 minutes ago
+                        </div>
+                      </div>
+                  </div>
+                  </div>
+                  <div class="col-md-6">                 
+                      <div class="card">
+                           <div class="card-header">
+                            <h5 class="card-category">用户评论</h5>
+                            <h4 class="card-title">评论管理</h4>
+                            <form class="text-right" action="queryUserComment" method="get">
+                            <div class="input-group no-border">
+                                <input type="text" value="" class="form-control" placeholder="请输入用户id查询">
+                                <span class="input-group-addon">
+                                    <i class="now-ui-icons ui-1_zoom-bold"></i>
+                                </span>
+                            </div>
+                            </form>
+                           </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                              <table class="table">
+                                <thead class=" text-primary">
+                                  <th >
+                                                                                                    用户姓名
+                                  </th>
+                                  <th >
+                                                                                                   文章标题
+                                  </th>
+                                  <th >
+                                                                                                  发表时间
+                                  </th>
+                                  <th  class="text-right" >
+                                                                                                    操作
+                                  </th>
+                                </thead>
+                                <tbody>
+                                  <tr >
+                                    <td >
+                                      Dakota Rice
+                                    </td>
+                                    <td >
+                                      Niger
+                                    </td>
+                                    <td >
+                                      Oud-Turnhout
+                                    </td>
+                                    <td  class="text-right" >
+                                      $36,738
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </div>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+            </div>
+<#include "ServerP/Menus/BaseIndexFooter.html">
+        </div>
+    </div>
+<#include "ServerP/Base/endBody.html">
+<#include "ServerP/Base/baseGameFooter.html">
+<#include "ServerP/Base/endHtml.html">

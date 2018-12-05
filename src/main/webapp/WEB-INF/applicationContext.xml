@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+<context:component-scan base-package="com.game.ssm">
+    <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+</context:component-scan>
+
+
+
+<context:property-placeholder location="classpath:db.properties"/>
+
+
+
+<!-- 配置C3p0的数据源 -->
+<bean id="datasource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+    <property name="driverClass" value="${jdbc.driver}"></property>
+    <property name="jdbcUrl" value="${jdbc.url}"></property>
+    <property name="user" value="${jdbc.username}"></property>
+    <property name="password" value="${jdbc.password}"></property>
+    <property name="initialPoolSize" value="10"></property>
+    <property name="minPoolSize" value="5"></property>
+    <property name="maxPoolSize" value="20"></property>
+</bean>
+
+<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+<!-- 向mybatis工厂内注入一个数据源 -->
+  <property name="dataSource" ref="datasource"></property>
+  <property name="configLocation" value="classpath:myBatis_config.xml"></property>
+  <!-- sql映射文件路径 -->
+  <property name="mapperLocations" value="classpath:com/game/ssm/mapper/**.xml"></property>
+</bean>
+
+
+
+<!-- 声明式事务管理 -->
+<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+ <property name="dataSource" ref="datasource"></property>
+</bean>
+
+
+
+<!-- 自动扫描对象关系映射 -->
+<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+<property name="basePackage" value="com.game.ssm.dao"></property>
+<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+</bean>
+
+
+</beans>
